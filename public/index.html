@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<body>
+    <h2>Asset Management Platform</h2>
+    <form id="uploadForm">
+        <input type="file" name="asset" id="fileInput">
+        <button type="submit">Upload to Repository</button>
+    </form>
+    <p id="message" style="color: red; font-weight: bold;"></p>
+
+    <script>
+        document.getElementById('uploadForm').onsubmit = async (e) => {
+            e.preventDefault();
+            const messageTag = document.getElementById('message');
+            const formData = new FormData(e.target);
+
+            const response = await fetch('/upload', { method: 'POST', body: formData });
+            const result = await response.text();
+            
+            messageTag.innerText = result;
+            messageTag.style.color = response.ok ? "green" : "red";
+        };
+    </script>
+</body>
+</html>
