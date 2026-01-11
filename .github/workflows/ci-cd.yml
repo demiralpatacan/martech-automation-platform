@@ -12,3 +12,4 @@ jobs:
           node-version: '20'
       - run: npm install
       - run: echo "Build successful!"
+      - run: npm test
